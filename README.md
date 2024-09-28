@@ -13,4 +13,4 @@ Este projeto visa auxiliar iniciantes em musculação a descobrir novos exercíc
 
 1. Clone o repositório:
    ```bash
-   `git clone https://github.com/seu-usuario/banco-de-exercicios.git`
+   git clone https://github.com/seu-usuario/banco-de-exercicios.git
