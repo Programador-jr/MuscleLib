@@ -1,0 +1,27 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+#exercises-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.exercise-card {
+    width: 200px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.exercise-card img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+.exercise-card h3 {
+    margin: 10px 0;
+}
