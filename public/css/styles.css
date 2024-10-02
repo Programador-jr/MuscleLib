@@ -1,0 +1,30 @@
+.exercise-card {
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.exercise-card img {
+    width: 30%;
+    height: auto;
+    border-radius: 5px;
+}
+
+.exercise-card h3 {
+    margin-top: 10px;
+    font-size: 1.5em;
+}
+
+.exercise-card p {
+    margin: 5px 0;
+}
+
+.exercise-card.show {
+    opacity: 1;
+    transform: translateY(0);
+}

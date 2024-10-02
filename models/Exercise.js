@@ -7,6 +7,7 @@ const exerciseSchema = new mongoose.Schema({
   mechanic: { type: String },
   equipment: { type: String },
   primaryMuscles: { type: [String], required: true },
+  secondaryMuscles: { type: [String] },
   instructions: { type: [String], required: true },
   category: { type: String, required: true },
   images: { type: [String], required: true },
