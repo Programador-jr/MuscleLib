@@ -6,7 +6,7 @@ const apiRoutes = require("./routes/api");
 
 const dbURI = process.env.MONGODB_URI
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT;
 
 mongoose.set('strictQuery', false);
 
