@@ -28,3 +28,64 @@
     opacity: 1;
     transform: translateY(0);
 }
+
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Para distribuir o espaço entre título e barra de pesquisa */
+    padding: 10px 20px;
+    background-color: #fff; /* Cor de fundo da navbar */
+    color: #000; /* Cor do texto */
+}
+
+.navbar-title {
+    margin: 0; /* Remove margem do título */
+    font-size: 1.8em; /* Ajuste o tamanho do título conforme necessário */
+}
+
+.search-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    position: relative; /* Para posicionar o ícone */
+}
+
+.search-input {
+    width: 100%; /* Ajusta a largura para 100% do container */
+    padding: 10px 40px; /* Adiciona espaço para o ícone */
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: border-color 0.3s ease, background-color 0.3s ease;/* Transição para a borda */
+}
+
+.search-input:hover {
+    border-color: #007bff; /* Muda a cor da borda ao passar o mouse */
+    background-color: #f0f8ff; /* Cor de fundo ao passar o mouse */
+}
+
+.search-input:focus {
+    border-color: #007bff; /* Muda a cor da borda ao focar */
+    outline: none; /* Remove o contorno padrão */
+}
+
+.search-icon {
+    position: absolute; /* Posiciona o ícone dentro do container */
+    left: 10px; /* Distância da borda esquerda */
+    color: #ccc; /* Cor inicial do ícone */
+    transition: color 0.3s ease; /* Transição para a cor */
+    cursor: pointer; /* Cursor de ponteiro */
+}
+
+.search-input:focus + .search-icon {
+    color: #007bff; /* Muda a cor do ícone ao focar no input */
+}
+
+/* Estilos para dispositivos menores */
+@media (max-width: 768px) {
+    .search-input {
+        width: calc(100% - 40px); /* Ajusta a largura para caber no ícone */
+    }
+}
+
+
