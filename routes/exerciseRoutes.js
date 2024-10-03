@@ -6,7 +6,7 @@ const Exercise = require('../models/Exercise');
 router.get('/', async (req, res) => {
     try {
         const page = parseInt(req.query.page) || 0;
-        const limit = parseInt(req.query.limit) || 10;
+        const limit = parseInt(req.query.limit) || 50;
 
         const exercises = await Exercise.find()
             .skip(page * limit)

@@ -1,5 +1,5 @@
 let currentPage = 0;
-const exercisesPerPage = 10;
+const exercisesPerPage = 50;
 let loading = false; // Para prevenir múltiplos carregamentos simultâneos
 
 // Função para buscar exercícios
