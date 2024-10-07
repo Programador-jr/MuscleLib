@@ -9,13 +9,30 @@
     <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
-    <nav class="navbar">
-        <h1 class="navbar-tite">Biblioteca de Exercícios</h1>
-        <div id="search-container"></div>
-    </nav>   
+    <nav id="navbar" class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <div class="container-fluid">
+          <!-- Logo -->
+          <a class="navbar-brand" href="#">
+            <img src="images/logo.png" alt="Logo" class="logo-img">
+          </a>
+          <!-- Botão de mudar o tema -->
+          <button id="theme-toggle" class="btn btn-outline-secondary">
+            <i id="theme-icon" class="fas fa-sun"></i> <!-- Ícone do sol (modo claro) por padrão -->
+          </button>
+        </div>
+      </nav>
+        
     <div id="exercises-container"><!-- Aqui os exercícios serão carregados via JavaScript --></div>
+
+        <!-- Botão de subir ao topo -->
+    <div id="backToTop" class="back-to-top">
+      <i class="fas fa-arrow-up"></i>
+    </div>
 
     <script src="/js/script.js"></script>
     <script src="/js/components/search.js"></script>
+    <script src="/js/components/dark-light.js"></script>
+    <script src="/js/components/navbar.js"></script>
+    <script src="/js/components/back-to-top.js"></script>
 </body>
 </html>

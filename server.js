@@ -1,8 +1,8 @@
 require('dotenv').config();
 const express = require("express");
 const mongoose = require("mongoose");
-const exerciseRoutes = require("./routes/exerciseRoutes"); // Rota para exercícios
-const apiRoutes = require("./routes/api");
+const exerciseRoutes = require("./api/exerciseRoutes"); // Rota para exercícios
+const apiRoutes = require("./api/api");
 
 const dbURI = process.env.MONGODB_URI
 const app = express();
