@@ -1,12 +1,108 @@
+:root {
+    /* Cores para o tema claro */
+    --background-light: #ffffff;
+    --text-light: #121212;
+    --border-light: #ccc;
+    --highlight-light: #00bfff;
+    --shadow-light: rgba(0, 0, 0, 0.1);
+    
+    /* Cores para o tema escuro */
+    --background-dark: #121212;
+    --text-dark: #ffffff;
+    --border-dark: #333;
+    --highlight-dark: #00bfff;
+    --shadow-dark: rgba(255, 255, 255, 0.1);
+}
+
+/* Efeito suave ao clicar */
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--background-light);
+    color: var(--text-light);
+    padding-top: 100px;
+}
+
+/* Estilos para o modo escuro */
+body.dark-mode {
+    background-color: var(--background-dark);
+    color: var(--text-dark);
+}
+
+body.dark-mode .navbar {
+    background-color: var(--background-dark)!important;
+    border-bottom: 1px solid var(--border-dark);
+    box-shadow: 0 2px 5px var(--shadow-dark);
+    border-bottom: 1px solid var(--border-dark);
+}
+
+body.dark-mode .search-input {
+    background-color: var(--background-dark);
+    border-color: var(--border-dark);
+    color: var(--text-dark);
+}
+
+body.dark-mode .search-input:focus {
+    border-color: var(--highlight-dark);
+}
+
+body.dark-mode .exercise-card {
+    background-color: var(--background-dark);
+    border-color: var(--border-dark);
+    color: var(--text-dark);
+}
+
+/* Logo */
+.logo-img {
+    width: 60px;
+    height: auto;
+    transition: transform 0.3s ease;
+}
+
+.logo-img:hover {
+    transform: scale(1.1);
+}
+
+/* Botão de alternância de tema */
+#theme-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    transition: color 0.3s ease;
+    font-size: 24px;
+}
+
+#theme-toggle:hover {
+    color: var(--highlight-light);
+}
+
+#theme-icon {
+    font-size: 24px;
+    transition: transform 0.5s ease;
+}
+
+/* Animação de rotação */
+.rotate {
+    transform: rotate(360deg);
+}
+
+/* Card de exercicíos */
 .exercise-card {
-    border: 1px solid #ddd;
+    border: 1px solid var(--border-light);
     padding: 15px;
     margin: 10px;
     border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 5px var(--shadow-light);
     opacity: 0;
     transform: translateY(50px);
     transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+body.dark-mode .exercise-card {
+    box-shadow: 0 2px 5px var(--shadow-dark);
 }
 
 .exercise-card img {
@@ -29,63 +125,134 @@
     transform: translateY(0);
 }
 
+/* Geral da Navbar */
 .navbar {
+    background-color: var(--background-light);
+    border-bottom: 1px solid var(--border-light);
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    justify-content: space-between; /* Para distribuir o espaço entre título e barra de pesquisa */
     padding: 10px 20px;
-    background-color: #fff; /* Cor de fundo da navbar */
-    color: #000; /* Cor do texto */
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 2px 10px var(--shadow-light);
 }
 
-.navbar-title {
-    margin: 0; /* Remove margem do título */
-    font-size: 1.8em; /* Ajuste o tamanho do título conforme necessário */
+.logo-container .logo {
+    height: 40px;
 }
 
 .search-container {
+    position: relative;
     display: flex;
-    align-items: center;
-    margin-bottom: 20px;
-    position: relative; /* Para posicionar o ícone */
+    justify-content: center;
+    margin: 0 20px;
 }
 
 .search-input {
-    width: 100%; /* Ajusta a largura para 100% do container */
-    padding: 10px 40px; /* Adiciona espaço para o ícone */
-    border: 2px solid #ccc;
-    border-radius: 5px;
+    background-color: var(--background-light);
+    color: var(--text-light);
+    border: 2px solid var(--border-light);
+    width: 100%;
+    max-width: 300px;
+    padding: 10px 40px 10px 15px; /* Espaço para o ícone da lupa */
+    border-radius: 20px;
     font-size: 16px;
-    transition: border-color 0.3s ease, background-color 0.3s ease;/* Transição para a borda */
+    transition: border-color 0.3s ease;
+    outline: none;
 }
 
-.search-input:hover {
-    border-color: #007bff; /* Muda a cor da borda ao passar o mouse */
-    background-color: #f0f8ff; /* Cor de fundo ao passar o mouse */
-}
-
-.search-input:focus {
-    border-color: #007bff; /* Muda a cor da borda ao focar */
-    outline: none; /* Remove o contorno padrão */
+body.dark-mode .search-input {
+    background-color: var(--background-dark);
+    border: 2px solid var(--border-dark);
+    color: var(--text-dark);
 }
 
 .search-icon {
-    position: absolute; /* Posiciona o ícone dentro do container */
-    left: 10px; /* Distância da borda esquerda */
-    color: #ccc; /* Cor inicial do ícone */
-    transition: color 0.3s ease; /* Transição para a cor */
-    cursor: pointer; /* Cursor de ponteiro */
+    position: relative;
+    top: 40px;
+    right: 30px; /* Alinha a lupa à direita dentro da caixa */
+    color: var(--text-light);
+    transform: translateY(-50%);
+    transition: all 0.3s ease;
+    font-size: 18px;
+    cursor: pointer;
 }
 
+body.dark-mode .search-icon {
+    color: var(--text-dark);
+}
+
+.search-input:hover {
+    border-color: var(--highlight-light);
+    background-color: #f0f8ff; /* Um leve destaque no hover */
+}
+
+.search-icon:hover {
+    color: var(--highlight-light);
+}
+
+.search-input:hover + .search-icon,
 .search-input:focus + .search-icon {
-    color: #007bff; /* Muda a cor do ícone ao focar no input */
+    color: var(--highlight-light);
+    outline: none;
+}
+
+
+body.dark-mode .search-input:hover,
+body.dark-mode .search-input:focus {
+    border-color: var(--highlight-dark);
+    background-color: #1c1c1c; /* Destaque sutil no modo escuro */
+}
+
+body.dark-mode .search-icon:hover,
+body.dark-mode .search-icon:focus {
+    color: var(--highlight-dark);
+}
+
+/* Estilos para o botão de voltar ao topo */
+.back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background-color: var(--highlight-light);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease, transform 0.6s ease;
+}
+
+.back-to-top:hover {
+    transform: rotate(360deg);
+    border-radius: 50%;
+}
+
+body.dark-mode .back-to-top {
+    background-color: var(--highlight-dark);
+}
+
+/* Mostrar o botão ao rolar a página */
+.back-to-top.show {
+    opacity: 1;
+    visibility: visible;
 }
 
 /* Estilos para dispositivos menores */
 @media (max-width: 768px) {
+    body {
+        padding-top: 100px;
+    }
+    
     .search-input {
         width: calc(100% - 40px); /* Ajusta a largura para caber no ícone */
     }
 }
-
-
