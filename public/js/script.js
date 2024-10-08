@@ -7,6 +7,10 @@ async function fetchExercises(page = 0, limit = exercisesPerPage) {
     try {
         loading = true; // Impede múltiplas chamadas simultâneas
         const response = await fetch(`/api/exercises?page=${page}&limit=${limit}`);
+            if (!response.ok) {
+                throw new Error(`Erro na resposta da API: ${response.statusText}`);
+            }
+
         const exercises = await response.json();
         
         if (exercises.length > 0) {
@@ -15,8 +19,9 @@ async function fetchExercises(page = 0, limit = exercisesPerPage) {
         }
         
         loading = false; // Libera para próxima chamada
-    } catch (error) {
-        console.error('Erro ao buscar exercícios:', error);
+    } catch (err) {
+        console.error('Erro ao buscar exercícios:', err);
+            alert('Ocorreu um erro ao buscar os exercicíos. Tente novamente mais tarde.');
         loading = false; // Libera a chamada caso ocorra erro
     }
 }
