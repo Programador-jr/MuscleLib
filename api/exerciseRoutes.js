@@ -11,10 +11,15 @@ router.get('/', async (req, res) => {
         const exercises = await Exercise.find()
             .skip(page * limit)
             .limit(limit);
+
+        console.log("Exercicíos retornados: ", exercises); // Verifica o conteudo
         
         res.json(exercises);
     } catch (err) {
-        res.status(500).json({ message: err.message });
+        console.error('Erro ao buscar exercicíos', err.message);
+
+        console.error('Detalhes do erro:', err);
+        res.status(500).json({ message: 'Erro ao buscar os exercicíos', error: err.message });
     }
 });
 

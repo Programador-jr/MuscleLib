@@ -245,14 +245,3 @@ body.dark-mode .back-to-top {
     opacity: 1;
     visibility: visible;
 }
-
-/* Estilos para dispositivos menores */
-@media (max-width: 768px) {
-    body {
-        padding-top: 100px;
-    }
-    
-    .search-input {
-        width: calc(100% - 40px); /* Ajusta a largura para caber no ícone */
-    }
-}
