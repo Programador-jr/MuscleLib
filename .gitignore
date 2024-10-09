@@ -131,6 +131,6 @@ dist
 .vercel
 
 
-exercises.json
-importExercises.json
-model/
+.exercises.json
+.importExercises.json
+/model
