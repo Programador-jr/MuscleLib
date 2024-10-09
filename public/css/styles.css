@@ -1,5 +1,7 @@
 :root {
+
     /* Cores para o tema claro */
+    --hover--light: #ffe600;
     --background-light: #ffffff;
     --text-light: #121212;
     --border-light: #ccc;
@@ -66,6 +68,7 @@ body.dark-mode .exercise-card {
 }
 
 /* Botão de alternância de tema */
+
 #theme-toggle {
     background: none;
     border: none;
@@ -73,10 +76,11 @@ body.dark-mode .exercise-card {
     outline: none;
     transition: color 0.3s ease;
     font-size: 24px;
+    color: var(--highlight-light);
 }
 
-#theme-toggle:hover {
-    color: var(--highlight-light);
+.fa-sun {
+    color: var(--hover--light);
 }
 
 #theme-icon {
@@ -154,7 +158,7 @@ body.dark-mode .exercise-card {
 .search-input {
     background-color: var(--background-light);
     color: var(--text-light);
-    border: 2px solid var(--border-light);
+    border: 2px solid var(--bs-body-color);
     width: 100%;
     max-width: 300px;
     padding: 10px 40px 10px 15px; /* Espaço para o ícone da lupa */
@@ -166,7 +170,7 @@ body.dark-mode .exercise-card {
 
 body.dark-mode .search-input {
     background-color: var(--background-dark);
-    border: 2px solid var(--border-dark);
+    border: 2px solid var(--border-light);
     color: var(--text-dark);
 }
 
@@ -220,7 +224,7 @@ body.dark-mode .search-icon:focus {
     width: 50px;
     height: 50px;
     background-color: var(--highlight-light);
-    color: white;
+    color: var(--background-dark);
     display: flex;
     align-items: center;
     justify-content: center;

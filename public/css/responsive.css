@@ -2,6 +2,10 @@
 @media (max-width: 600px) {
     .navbar {
         padding: 10px 15px;
+        display: flex;
+    flex-wrap: nowrap!important;
+    align-items: center;
+    justify-content: space-between;
     }
 
     .logo-img {
