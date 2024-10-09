@@ -1,12 +1,13 @@
 let currentPage = 0;
 const exercisesPerPage = 50;
 let loading = false; // Para prevenir múltiplos carregamentos simultâneos
+const apiUrl = 'https://exerciseapi-mgtt.onrender.com'
 
 // Função para buscar exercícios
 async function fetchExercises(page = 0, limit = exercisesPerPage) {
     try {
         loading = true; // Impede múltiplas chamadas simultâneas
-        const response = await fetch(`/api/exercises?page=${page}&limit=${limit}`);
+        const response = await fetch(`${apiUrl/api/exercises?page=${page}&limit=${limit}`);
             if (!response.ok) {
                 throw new Error(`Erro na resposta da API: ${response.statusText}`);
             }
@@ -21,7 +22,7 @@ async function fetchExercises(page = 0, limit = exercisesPerPage) {
         loading = false; // Libera para próxima chamada
     } catch (err) {
         console.error('Erro ao buscar exercícios:', err);
-            alert('Ocorreu um erro ao buscar os exercicíos. Tente novamente mais tarde.');
+            // alert('Ocorreu um erro ao buscar os exercicíos. Tente novamente mais tarde.');
         loading = false; // Libera a chamada caso ocorra erro
     }
 }

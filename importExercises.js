@@ -1,7 +1,7 @@
 require('dotenv').config();
 const mongoose = require('mongoose');
 const fs = require('fs');
-const Exercise = require('./models/Exercise'); // O modelo de exercício
+const Exercise = require('./model/Exercise'); // O modelo de exercício
 
 const dbURI = process.env.MONGODB_URI;
 
