@@ -1,7 +1,7 @@
 let currentPage = 0;
 const exercisesPerPage = 50;
 let loading = false; // Para prevenir múltiplos carregamentos simultâneos
-const apiBaseUrl = 'https://exerciseapi-mgtt.onrender.com/api/exercises/';
+const apiBaseUrl = 'https://libapi.vercel.app/api/exercises';
 
 // Função para buscar exercícios
 async function fetchExercises(page = 0, limit = exercisesPerPage) {
