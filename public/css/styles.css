@@ -1,6 +1,6 @@
 :root {
 
-    /* Cores para o tema claro */
+    /* light */
     --hover--light: #ffe600;
     --background-light: #ffffff;
     --text-light: #121212;
@@ -8,7 +8,7 @@
     --highlight-light: #00bfff;
     --shadow-light: rgba(0, 0, 0, 0.1);
     
-    /* Cores para o tema escuro */
+    /* dark */
     --background-dark: #121212;
     --text-dark: #ffffff;
     --border-dark: #333;
@@ -58,7 +58,7 @@ body.dark-mode .exercise-card {
 
 /* Logo */
 .logo-img {
-    width: 60px;
+    width: 90px;
     height: auto;
     transition: transform 0.3s ease;
 }
@@ -92,6 +92,21 @@ body.dark-mode .exercise-card {
 .rotate {
     transform: rotate(360deg);
 }
+
+.collapse-icon {
+    margin-left: 8px;
+    transition: transform 0.4s ease, opacity 0.4s ease;
+    font-size: 1.5rem;
+}
+
+.collapse-icon.fa-minus {
+    transform: rotate(180deg);
+}
+
+.show .collapse-icon.fa-plus {
+    transform: rotate(-180deg);
+}
+
 
 /* Card de exercicíos */
 .exercise-card {
