@@ -40,7 +40,7 @@ function isElementInViewport(el) {
 function displayExercises(exercises) {
     const container = document.getElementById('exercises-container');
 
-    exercises.forEach(exercise => {
+    exercises.forEach((exercise, index) => {
         const exerciseCard = document.createElement('div');
         exerciseCard.className = 'exercise-card';
 
@@ -89,19 +89,60 @@ function displayExercises(exercises) {
         secondaryMuscles.textContent = `Músculos Secundários: ${exercise.secondaryMuscles && Array.isArray(exercise.secondaryMuscles) && exercise.secondaryMuscles.length > 0 ? exercise.secondaryMuscles.join(', ') : 'Nenhum'}`;
         exerciseCard.appendChild(secondaryMuscles);
 
-        // Adiciona as instruções passo a passo
-        const instructions = document.createElement('ol');
+        // Adiciona as instruções em um colapso
+        const collapseId = `collapseInstructions-${index}`;
+
+        const collapseButton = document.createElement('button');
+        collapseButton.className = 'btn btn-primary collapse-toggle d-flex justify-content-between align-items-center';
+        collapseButton.type = 'button';
+        collapseButton.setAttribute('data-bs-toggle', 'collapse');
+        collapseButton.setAttribute('data-bs-target', `#${collapseId}`);
+        collapseButton.innerHTML = `Mostrar Instruções <i class="collapse-icon fas fa-plus"></i>`; // Ícone do Font Awesome
+        exerciseCard.appendChild(collapseButton);
+
+        const collapseDiv = document.createElement('div');
+        collapseDiv.className = 'collapse';
+        collapseDiv.id = collapseId;
+
+        const instructions = document.createElement('div');
+        instructions.className = 'card card-body';
+
         if (exercise.instructions && Array.isArray(exercise.instructions)) {
             exercise.instructions.forEach(step => {
-                const li = document.createElement('li');
-                li.textContent = step;
-                instructions.appendChild(li);
+                const p = document.createElement('p');
+                p.textContent = step;
+                instructions.appendChild(p);
             });
         }
-        exerciseCard.appendChild(instructions);
+
+        collapseDiv.appendChild(instructions);
+        exerciseCard.appendChild(collapseDiv);
+
+        // Função para alternar ícone de + para x
+        collapseButton.addEventListener('click', () => {
+            const icon = collapseButton.querySelector('.collapse-icon');
+            if (collapseDiv.classList.contains('show')) {
+                icon.classList.replace('fa-minus', 'fa-plus'); // Alterna para o ícone de +
+            } else {
+                icon.classList.replace('fa-plus', 'fa-minus'); // Alterna para o ícone de x
+            }
+        });
+
+        // Evento do Bootstrap para detectar quando o colapso abrir ou fechar
+        collapseDiv.addEventListener('shown.bs.collapse', () => {
+            const icon = collapseButton.querySelector('.collapse-icon');
+            icon.classList.replace('fa-plus', 'fa-minus'); // Ícone de colapso aberto
+        });
+
+        collapseDiv.addEventListener('hidden.bs.collapse', () => {
+            const icon = collapseButton.querySelector('.collapse-icon');
+            icon.classList.replace('fa-minus', 'fa-plus'); // Ícone de colapso fechado
+        });
+
 
         // Adiciona o card ao container
         container.appendChild(exerciseCard);
+           
 
         // Função para revelar o card quando ele entra parcialmente na visualização
         function reveal() {
