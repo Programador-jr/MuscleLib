@@ -56,6 +56,35 @@ body.dark-mode .exercise-card {
     color: var(--text-dark);
 }
 
+.search-message {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none; /* Começa escondido */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    z-index: 1000; /* Para garantir que a mensagem fique acima de outros elementos */
+}
+
+.suggestion-item {
+    margin-top: 10px;
+    color: #f1c40f;
+    cursor: pointer;
+}
+
+.suggestion-item:hover {
+    text-decoration: underline;
+}
+
+
 /* Logo */
 .logo-img {
     width: 90px;
