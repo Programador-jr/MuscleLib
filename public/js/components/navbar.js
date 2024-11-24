@@ -1,4 +1,3 @@
-// Função para criar a navbar
 function createNavbar() {
     const navbar = document.createElement('nav');
     navbar.className = 'navbar navbar-expand-lg navbar-light bg-light fixed-top';
@@ -8,7 +7,7 @@ function createNavbar() {
 
     // Logo substituindo o h1
     const logo = document.createElement('a');
-    logo.href = '#'; // Pode ser alterado para a rota principal
+    logo.href = ''; // Pode ser alterado para a rota principal
     logo.className = 'navbar-brand';
     
     const logoImg = document.createElement('img');
@@ -17,20 +16,19 @@ function createNavbar() {
     logoImg.className = 'logo-img'; // Adicione esta classe para customizar o estilo via CSS
     logo.appendChild(logoImg);
 
-    // Criação da barra de pesquisa
-    const searchContainer = document.createElement('div');
-    searchContainer.className = 'search-container mx-auto'; // Centraliza a barra de pesquisa
+    // Placeholder para a barra de pesquisa
+    const searchPlaceholder = document.createElement('div');
+    searchPlaceholder.className = 'search-placeholder mx-auto'; // Centraliza o espaço para a barra de pesquisa
+    searchPlaceholder.id = 'search-placeholder'; // Adicione um ID para facilitar a localização
 
-    const searchInput = document.createElement('input');
-    searchInput.type = 'text';
-    searchInput.placeholder = 'Pesquisar exercícios...';
-    searchInput.className = 'search-input form-control'; // Use classes Bootstrap para estilizar
+    // Botão de cores
+    const colorButton = document.createElement('button');
+    colorButton.className = "palette-btn btn btn-outline-secondary ms-2";
+    colorButton.onclick = toggleColorOptions;
 
-    const searchIcon = document.createElement('i');
-    searchIcon.className = 'fas fa-search search-icon'; // Ícone de pesquisa
-
-    searchContainer.appendChild(searchInput);
-    searchContainer.appendChild(searchIcon);
+    const colorIcon = document.createElement('i');
+    colorIcon.className = 'fas fa-palette';
+    colorButton.appendChild(colorIcon);
 
     // Botão de mudar o tema
     const themeToggle = document.createElement('button');
@@ -42,10 +40,11 @@ function createNavbar() {
     themeIcon.className = 'fas fa-sun'; // Ícone do sol por padrão (modo claro)
     themeToggle.appendChild(themeIcon);
 
-    // Adicionar logo, barra de pesquisa e botão de tema ao container
+    // Adicionar logo, placeholder da barra de pesquisa, botão de tema e botão de cores ao container
     container.appendChild(logo);
-    container.appendChild(searchContainer);
+    container.appendChild(searchPlaceholder);
     container.appendChild(themeToggle);
+    container.appendChild(colorButton);
 
     // Adicionar container ao navbar
     navbar.appendChild(container);

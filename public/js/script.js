@@ -93,7 +93,7 @@ function displayExercises(exercises) {
         const collapseId = `collapseInstructions-${index}`;
 
         const collapseButton = document.createElement('button');
-        collapseButton.className = 'btn btn-primary collapse-toggle d-flex justify-content-between align-items-center';
+        collapseButton.className = 'collapse-btn btn btn-primary collapse-toggle d-flex justify-content-between align-items-center';
         collapseButton.type = 'button';
         collapseButton.setAttribute('data-bs-toggle', 'collapse');
         collapseButton.setAttribute('data-bs-target', `#${collapseId}`);
@@ -165,6 +165,21 @@ window.addEventListener('scroll', () => {
         fetchExercises(currentPage); // Carrega a próxima página
     }
 });
+
+document.addEventListener('searchResults', (e) => {
+    const exercises = e.detail; // Exercícios retornados
+    const container = document.getElementById('exercises-container');
+    container.innerHTML = ''; // Limpa os exercícios atuais para exibir os resultados da pesquisa
+    displayExercises(exercises);
+});
+
+document.addEventListener('clearSearchResults', () => {
+    const container = document.getElementById('exercises-container');
+    container.innerHTML = ''; // Limpa os resultados da pesquisa
+    currentPage = 0; // Reseta a paginação para a primeira página
+    fetchExercises(0); // Carrega os exercícios da primeira página
+});
+
 
 // Carrega a primeira página de exercícios ao carregar o site
 fetchExercises();

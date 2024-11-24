@@ -10,19 +10,7 @@
     <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
-    <nav id="navbar" class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-        <div class="container-fluid">
-          <!-- Logo -->
-          <a class="navbar-brand" href="#">
-            <img src="images/logo.png" alt="Logo" class="logo-img">
-          </a>
-          <!-- Botão de mudar o tema -->
-          <button id="theme-toggle" class="btn btn-outline-secondary">
-            <i id="theme-icon" class="fas fa-sun"></i> <!-- Ícone do sol (modo claro) por padrão -->
-          </button>
-        </div>
-      </nav>
-        
+
     <div id="exercises-container"><!-- Aqui os exercícios serão carregados via JavaScript --></div>
     <div id="loading-indicator" style="display: none;">Carregando mais exercícios...</div>
         <!-- Botão de subir ao topo -->
@@ -31,9 +19,10 @@
     </div>
 
     <script src="/js/script.js"></script>
+    <script src="/js/components/colorsChange.js"></script>
+    <script src="/js/components/navbar.js"></script>
     <script src="/js/components/search.js"></script>
     <script src="/js/components/dark-light.js"></script>
-    <script src="/js/components/navbar.js"></script>
     <script src="/js/components/back-to-top.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
