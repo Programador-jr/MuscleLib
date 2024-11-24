@@ -14,6 +14,36 @@
     --border-dark: #333;
     --highlight-dark: #00bfff;
     --shadow-dark: rgba(255, 255, 255, 0.1);
+    
+    /* red-mode */
+    --border-red: #d11414;
+    --highlight-red: #cf1818;
+    --shadow-red: rgb(214, 30, 30);
+    --neon-red: rgb(221, 31, 31);
+
+    /* green-mode */
+    --border-green: #15d31e;
+    --highlight-green: #3ed439;
+    --shadow-green: rgba(65, 230, 43, 0.705);
+    --neon-green: rgb(28, 223, 28, 0.6);
+
+    /* blue-mode */
+    --border-blue: #1da5ff;
+    --highlight-blue: #00bfff;
+    --shadow-blue: rgba(0, 195, 255, 0.685);
+    --neon-blue: rgba(5, 163, 255, 0.829);
+
+    /* yellow-mode */
+    --border-yellow: #fffb00;
+    --highlight-yellow: #e7da1c;
+    --shadow-yellow: rgba(251, 255, 0, 0.836);
+    --neon-yellow: rgba(228, 231, 19, 0.911);
+
+    /* pink-mode */
+    --border-pink: #ff0c49;
+    --highlight-pink: #ff2c60;
+    --shadow-pink: rgba(255, 30, 86, 0.774);
+    --neon-pink: rgba(255, 30, 86, 0.6);
 }
 
 /* Efeito suave ao clicar */
@@ -24,243 +54,566 @@ html {
 body {
     background-color: var(--background-light);
     color: var(--text-light);
-    padding-top: 100px;
+    padding-top: 12rem;
+
+    & .navbar {
+        background-color: var(--background-light);
+        border-bottom: 1px solid var(--border-light);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 20px;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 1000;
+        box-shadow: 0 2px 10px var(--shadow-light);
+    }
+    
+    & .search-container {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        margin: 0 20px;
+
+        & .search-input {
+            background-color: var(--background-light);
+            color: var(--text-light);
+            width: 100%;
+            max-width: 300px;
+            padding: 10px 40px 10px 15px; /* Espaço para o ícone da lupa */
+            border-radius: 20px;
+            font-size: 16px;
+            outline: none;
+        }
+        
+        & .search-icon {
+            position: relative;
+            top: 40px;
+            right: 30px; /* Alinha a lupa à direita dentro da caixa */
+            color: var(--text-light);
+            transform: translateY(-50%);
+            transition: all 0.3s ease;
+            font-size: 18px;
+            cursor: pointer;
+        }
+    }
+
+    & #theme-toggle {
+        background: none;
+        border: none;
+        cursor: pointer;
+        outline: none;
+        transition: color 0.3s ease;
+        font-size: 24px;
+        color: var(--highlight-light);
+
+        & .fa-sun {
+            color: var(--hover--light);
+        }
+
+        & #theme-icon {
+            font-size: 24px;
+            transition: transform 0.5s ease;
+        }
+        & .rotate {
+            transform: rotate(360deg);
+        }
+    }
+
+    & .logo-img {
+        width: 90px;
+        height: auto;
+        transition: transform 0.3s ease;
+    }
+    
+    & .logo-img:hover {
+        transform: scale(1.1);
+    }
+
+    & .palette-btn {
+        border: none;
+        -webkit-text-fill-color: transparent;
+        font-size: 23px;
+        background: linear-gradient(141deg, rgba(233, 10, 10, 1) 32%, rgba(3, 235, 24, 1) 34%, rgba(13, 122, 232, 1) 50%, rgba(25, 129, 220, 1) 54%, rgba(247, 255, 2, 1) 65%, rgba(254, 2, 255, 1) 78%);
+        background-clip: text;
+    }
+
+    & .color-options {
+        background: var(--background-light);
+        position: fixed;
+        top: 100px;
+        right: 20px;
+        width: 12rem;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 10px;
+        z-index: 1000;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    & .color-option {
+        margin: 5px; /* Espaçamento entre os botões de cor */
+    }
+    
+    & .color-option:hover {
+        background: var(--border-light);
+    }
+
+    & .btn {
+        font-weight: bold;
+        border-color: var(--background-dark);
+    }
+
+    & .vermelho-span {
+        position: absolute;
+        display: block;
+        top: 72px;
+        left: 30px;
+        width: 1rem;
+        height: 1rem;
+        border-radius: 50%;
+        background-color: var(--highlight-red);
+        border: solid var(--neon-red);
+        box-shadow: 0 0 5px 5px var(--shadow-red);
+    }
+
+    & .verde-span {
+        position: absolute;
+        display: block;
+        top: 116px;
+        left: 30px;
+        width: 1rem;
+        height: 1rem;
+        border-radius: 50%;
+        background-color: var(--highlight-green);
+        border: solid var(--neon-green);
+        box-shadow: 0 0 5px 5px var(--shadow-green);
+    }
+
+    & .azul-span {
+        position: absolute;
+        display: block;
+        top: 163px;
+        left: 30px;
+        width: 1rem;
+        height: 1rem;
+        border-radius: 50%;
+        background-color: var(--highlight-blue);
+        border: solid var(--neon-blue);
+        box-shadow: 0 0 5px 5px var(--shadow-blue);
+    }
+
+    & .amarelo-span {
+        position: absolute;
+        display: block;
+        top: 209px;
+        left: 30px;
+        width: 1rem;
+        height: 1rem;
+        border-radius: 50%;
+        background-color: var(--highlight-yellow);
+        border: solid var(--neon-yellow);
+        box-shadow: 0 0 5px 5px var(--shadow-yellow);
+    }
+
+    & .rosa-span {
+        position: absolute;
+        display: block;
+        top: 255px;
+        left: 30px;
+        width: 1rem;
+        height: 1rem;
+        border-radius: 50%;
+        background-color: var(--highlight-pink);
+        border: solid var(--neon-pink);
+        box-shadow: 0 0 5px 5px var(--shadow-pink);
+    }
+
+    & .button-close {
+        border: none;
+        cursor: pointer;
+        padding: 5px;
+        font-size: 1.5rem;
+    }
+
+    & .exercise-card {
+        border: 1px solid var(--border-light);
+        padding: 15px;
+        margin: 10px;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px var(--shadow-light);
+        opacity: 0;
+        transform: translateY(50px);
+        transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+    
+    & .exercise-card img {
+        width: 30%;
+        height: auto;
+        border-radius: 5px;
+    }
+    
+    & .exercise-card h3 {
+        margin-top: 10px;
+        font-size: 1.5em;
+    }
+    
+    & .exercise-card p {
+        margin: 5px 0;
+    }
+    
+    & .exercise-card.show {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    & .collapse-btn {
+        border: none;
+        outline: none;
+        font-weight: 500;
+    }
+
+    .collapse-icon {
+        margin-left: 8px;
+        transition: transform 0.4s ease, opacity 0.4s ease;
+        font-size: 1.5rem;
+    }
+    
+    .collapse-icon.fa-minus {
+        transform: rotate(180deg);
+    }
+    
+    .show .collapse-icon.fa-plus {
+        transform: rotate(-180deg);
+    }
+    
+    & .back-to-top {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+        background-color: var(--highlight-light);
+        color: var(--background-dark);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 5px;
+        cursor: pointer;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease, transform 0.6s ease;
+    }
+    
+    & .back-to-top:hover {
+        transform: rotate(360deg);
+        border-radius: 50%;
+    }
+    
+    & .back-to-top.show {
+        opacity: 1;
+        visibility: visible;
+    }
 }
 
 /* Estilos para o modo escuro */
 body.dark-mode {
     background-color: var(--background-dark);
     color: var(--text-dark);
+    
+    & .navbar {
+        background-color: var(--background-dark)!important;
+        border-bottom: 1px solid var(--border-dark);
+        box-shadow: 0 2px 5px var(--shadow-dark);
+        border-bottom: 1px solid var(--border-dark);
+    }
+
+    & .search-input {
+        background-color: var(--background-dark);
+        border: 2px solid var(--border-light);
+        color: var(--text-dark);
+    }
+
+    & .color-options {
+        background: var(--background-dark);
+    }
+
+    & .color-option:hover {
+        background: var(--border-dark);
+    }
+
+    & .btn {
+        border-color: var(--bs-body-color);
+        color: var(--background-light);
+    }
+
+    & .exercise-card {
+        background-color: var(--background-dark);
+        box-shadow: 0 2px 5px var(--shadow-dark);
+        border-color: var(--border-dark);
+        color: var(--text-dark);
+    }
+
+    & .card-body {
+        color: var(--background-light);
+        background: var(--background-dark);
+    }
+
+    & .back-to-top {
+        background-color: var(--highlight-dark);
+        font-weight: bold;
+    }
+
+
 }
 
-body.dark-mode .navbar {
-    background-color: var(--background-dark)!important;
-    border-bottom: 1px solid var(--border-dark);
-    box-shadow: 0 2px 5px var(--shadow-dark);
-    border-bottom: 1px solid var(--border-dark);
+body.vermelho-mode {
+
+    & .navbar {
+        border-bottom: 2px solid transparent;
+        box-shadow: 0 2px 5px var(--shadow-red),
+                    0 0 10px var(--neon-red),
+                    0 0 20px var(--neon-red),
+                    0 0 30px var(--neon-red);
+    }
+
+    & .search-input {
+        border: 2px solid var(--border-red);
+        color: var(--text-red);
+    }
+
+    & .search-icon {
+        color: var(--highlight-red);
+    }
+
+    & .button-close {
+        background: var(--highlight-red);
+    }
+
+    & .color-options {
+        border-color: var(--shadow-red);
+    }
+
+    & .exercise-card {
+        box-shadow: 0 2px 5px var(--shadow-red);
+        border-color: var(--border-red);
+    }
+
+    & .collapse-btn {
+        background-color: var(--highlight-red);
+        color: var(--text-light);
+    }
+
+    & .collapse-icon {
+        color: var(--background-red);
+    }
+
+    & .card-body {
+        border-color: var(--highlight-red);
+    }
+
+    & .back-to-top {
+        background-color: var(--highlight-red);
+    }
 }
 
-body.dark-mode .search-input {
-    background-color: var(--background-dark);
-    border-color: var(--border-dark);
-    color: var(--text-dark);
+body.verde-mode {
+    & .navbar {
+        border-bottom: 2px solid transparent;
+        box-shadow: 0 2px 5px var(--shadow-green),
+                    0 0 10px var(--neon-green),
+                    0 0 20px var(--neon-green),
+                    0 0 30px var(--neon-green);
+    }
+
+    & .search-input {
+        border: 2px solid var(--border-green);
+        color: var(--text-green);
+    }
+
+    & .search-icon {
+        color: var(--highlight-green);
+    }
+
+    & .button-close {
+        background: var(--highlight-green);
+    }
+
+    & .color-options {
+        border-color: var(--shadow-green);
+    }
+
+    & .exercise-card {
+        box-shadow: 0 2px 5px var(--shadow-green);
+        border-color: var(--border-green);
+    }
+
+    & .collapse-btn {
+        background-color: var(--highlight-green);
+        color: var(--text-light);
+    }
+
+    & .collapse-icon {
+        color: var(--background-green);
+    }
+
+    & .card-body {
+        border-color: var(--highlight-green);
+    }
+
+    & .back-to-top {
+        background-color: var(--highlight-green);
+    }
 }
 
-body.dark-mode .search-input:focus {
-    border-color: var(--highlight-dark);
+body.azul-mode {
+
+    & .navbar {
+        border-bottom: 2px solid transparent;
+        box-shadow: 0 2px 5px var(--shadow-blue),
+                    0 0 10px var(--neon-blue),
+                    0 0 20px var(--neon-blue),
+                    0 0 30px var(--neon-blue);
+    }
+
+    & .search-input {
+        border: 2px solid var(--border-blue);
+        color: var(--text-blue);
+    }
+
+    & .search-icon {
+        color: var(--highlight-blue);
+    }
+
+    & .button-close {
+        background: var(--highlight-blue);
+    }
+
+    & .color-options {
+        border-color: var(--shadow-blue);
+    }
+
+    & .exercise-card {
+        box-shadow: 0 2px 5px var(--shadow-blue);
+        border-color: var(--border-blue);
+    }
+
+    & .collapse-btn {
+        background-color: var(--highlight-blue);
+        color: var(--text-light);
+    }
+
+    & .collapse-icon {
+        color: var(--background-blue);
+    }
+
+    & .card-body {
+        border-color: var(--highlight-blue);
+    }
+
+    & .back-to-top {
+        background-color: var(--highlight-blue);
+    }
 }
 
-body.dark-mode .exercise-card {
-    background-color: var(--background-dark);
-    border-color: var(--border-dark);
-    color: var(--text-dark);
+body.amarelo-mode {
+
+    & .navbar {
+        border-bottom: 2px solid transparent;
+        box-shadow: 0 2px 5px var(--shadow-yellow),
+                    0 0 10px var(--neon-yellow),
+                    0 0 20px var(--neon-yellow),
+                    0 0 30px var(--neon-yellow);
+    }
+
+    & .search-input {
+        border: 2px solid var(--border-yellow);
+        color: var(--text-yellow);
+    }
+
+    & .search-icon {
+        color: var(--highlight-yellow);
+    }
+
+    & .button-close {
+        background: var(--highlight-yellow);
+    }
+
+    & .color-options {
+        border-color: var(--shadow-yellow);
+    }
+
+    & .exercise-card {
+        box-shadow: 0 2px 5px var(--shadow-yellow);
+        border-color: var(--border-yellow);
+    }
+
+    & .collapse-btn {
+        background-color: var(--highlight-yellow);
+        color: var(--text-light);
+    }
+
+    & .collapse-icon {
+        color: var(--background-yellow);
+    }
+
+    & .card-body {
+        border-color: var(--highlight-yellow);
+    }
+
+    & .back-to-top {
+        background-color: var(--highlight-yellow);
+    }
 }
 
-/* Logo */
-.logo-img {
-    width: 90px;
-    height: auto;
-    transition: transform 0.3s ease;
-}
+body.rosa-mode {
+ 
+    & .navbar {
+        border-bottom: 2px solid transparent;
+        box-shadow: 0 2px 5px var(--shadow-pink),
+                    0 0 10px var(--neon-pink),
+                    0 0 20px var(--neon-pink),
+                    0 0 30px var(--neon-pink);
+    }
 
-.logo-img:hover {
-    transform: scale(1.1);
-}
+    & .search-input {
+        border: 2px solid var(--border-pink);
+        color: var(--text-pink);
+    }
 
-/* Botão de alternância de tema */
+    & .search-icon {
+        color: var(--highlight-pink);
+    }
 
-#theme-toggle {
-    background: none;
-    border: none;
-    cursor: pointer;
-    outline: none;
-    transition: color 0.3s ease;
-    font-size: 24px;
-    color: var(--highlight-light);
-}
+    & .button-close {
+        background: var(--highlight-pink);
+    }
 
-.fa-sun {
-    color: var(--hover--light);
-}
+    & .color-options {
+        border-color: var(--shadow-pink);
+    }
 
-#theme-icon {
-    font-size: 24px;
-    transition: transform 0.5s ease;
-}
+    & .exercise-card {
+        box-shadow: 0 2px 5px var(--shadow-pink);
+        border-color: var(--border-pink);
+    }
 
-/* Animação de rotação */
-.rotate {
-    transform: rotate(360deg);
-}
+    & .collapse-btn {
+        background-color: var(--highlight-pink);
+        color: var(--text-light);
+    }
 
-.collapse-icon {
-    margin-left: 8px;
-    transition: transform 0.4s ease, opacity 0.4s ease;
-    font-size: 1.5rem;
-}
+    & .collapse-icon {
+        color: var(--background-pink);
+    }
 
-.collapse-icon.fa-minus {
-    transform: rotate(180deg);
-}
+    & .card-body {
+        border-color: var(--highlight-pink);
+    }
 
-.show .collapse-icon.fa-plus {
-    transform: rotate(-180deg);
-}
-
-
-/* Card de exercicíos */
-.exercise-card {
-    border: 1px solid var(--border-light);
-    padding: 15px;
-    margin: 10px;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px var(--shadow-light);
-    opacity: 0;
-    transform: translateY(50px);
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-}
-
-body.dark-mode .exercise-card {
-    box-shadow: 0 2px 5px var(--shadow-dark);
-}
-
-.exercise-card img {
-    width: 30%;
-    height: auto;
-    border-radius: 5px;
-}
-
-.exercise-card h3 {
-    margin-top: 10px;
-    font-size: 1.5em;
-}
-
-.exercise-card p {
-    margin: 5px 0;
-}
-
-.exercise-card.show {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* Geral da Navbar */
-.navbar {
-    background-color: var(--background-light);
-    border-bottom: 1px solid var(--border-light);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 1000;
-    box-shadow: 0 2px 10px var(--shadow-light);
-}
-
-.logo-container .logo {
-    height: 40px;
-}
-
-.search-container {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    margin: 0 20px;
-}
-
-.search-input {
-    background-color: var(--background-light);
-    color: var(--text-light);
-    border: 2px solid var(--bs-body-color);
-    width: 100%;
-    max-width: 300px;
-    padding: 10px 40px 10px 15px; /* Espaço para o ícone da lupa */
-    border-radius: 20px;
-    font-size: 16px;
-    transition: border-color 0.3s ease;
-    outline: none;
-}
-
-body.dark-mode .search-input {
-    background-color: var(--background-dark);
-    border: 2px solid var(--border-light);
-    color: var(--text-dark);
-}
-
-.search-icon {
-    position: relative;
-    top: 40px;
-    right: 30px; /* Alinha a lupa à direita dentro da caixa */
-    color: var(--text-light);
-    transform: translateY(-50%);
-    transition: all 0.3s ease;
-    font-size: 18px;
-    cursor: pointer;
-}
-
-body.dark-mode .search-icon {
-    color: var(--text-dark);
-}
-
-.search-input:hover {
-    border-color: var(--highlight-light);
-    background-color: #f0f8ff; /* Um leve destaque no hover */
-}
-
-.search-icon:hover {
-    color: var(--highlight-light);
-}
-
-.search-input:hover + .search-icon,
-.search-input:focus + .search-icon {
-    color: var(--highlight-light);
-    outline: none;
-}
-
-
-body.dark-mode .search-input:hover,
-body.dark-mode .search-input:focus {
-    border-color: var(--highlight-dark);
-    background-color: #1c1c1c; /* Destaque sutil no modo escuro */
-}
-
-body.dark-mode .search-icon:hover,
-body.dark-mode .search-icon:focus {
-    color: var(--highlight-dark);
-}
-
-/* Estilos para o botão de voltar ao topo */
-.back-to-top {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 50px;
-    height: 50px;
-    background-color: var(--highlight-light);
-    color: var(--background-dark);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 5px;
-    cursor: pointer;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s ease, transform 0.6s ease;
-}
-
-.back-to-top:hover {
-    transform: rotate(360deg);
-    border-radius: 50%;
-}
-
-body.dark-mode .back-to-top {
-    background-color: var(--highlight-dark);
-}
-
-/* Mostrar o botão ao rolar a página */
-.back-to-top.show {
-    opacity: 1;
-    visibility: visible;
+    & .back-to-top {
+        background-color: var(--highlight-pink);
+    }
 }

@@ -1,5 +1,38 @@
+// Função para buscar exercícios na API
+async function searchExercises(query) {
+    try {
+        const response = await fetch(`https://libapi.vercel.app/api/exercises/search?query=${query}`);
+        if (!response.ok) {
+            throw new Error(`Erro na API: ${response.statusText}`);
+        }
+
+        const data = await response.json();
+        if (data.exercises && data.exercises.length > 0) {
+            // Emite um evento com os resultados da pesquisa
+            document.dispatchEvent(new CustomEvent('searchResults', { detail: data.exercises }));
+        } else {
+            console.warn('Nenhum exercício encontrado para a pesquisa:', query);
+            clearSearchResults();
+        }
+    } catch (error) {
+        console.error('Erro ao buscar exercícios:', error);
+        clearSearchResults();
+    }
+}
+
+// Função para limpar os resultados da pesquisa
+function clearSearchResults() {
+    document.dispatchEvent(new CustomEvent('clearSearchResults'));
+}
+
 // Função para criar uma barra de pesquisa e colocá-la no placeholder
 function createSearchBar() {
+    const searchPlaceholder = document.getElementById('search-placeholder');
+    if (!searchPlaceholder) {
+        console.error('Placeholder da barra de pesquisa não encontrado!');
+        return;
+    }
+
     const searchContainer = document.createElement('div');
     searchContainer.className = 'search-container';
 
@@ -9,40 +42,22 @@ function createSearchBar() {
     searchInput.className = 'search-input';
 
     const searchIcon = document.createElement('i');
-    searchIcon.className = 'fas fa-search search-icon'; // Ícone do Font Awesome
+    searchIcon.className = 'fas fa-search search-icon';
 
     searchContainer.appendChild(searchInput);
     searchContainer.appendChild(searchIcon);
 
-    // Insere a barra de pesquisa dentro da navbar, entre o logo e o botão de tema
-    const navbar = document.querySelector('.navbar .container-fluid');
-    const themeToggleButton = document.querySelector('#theme-toggle');
-
-    // Coloca a barra de pesquisa entre o logo e o botão de alternar tema
-    navbar.insertBefore(searchContainer, themeToggleButton);
+    // Insere a barra de pesquisa no placeholder
+    searchPlaceholder.appendChild(searchContainer);
 
     // Adiciona o evento de pesquisa
     searchInput.addEventListener('input', (e) => {
-        const query = e.target.value.toLowerCase();
-        filterExercises(query);
-    });
-}
-
-// Função para filtrar exercícios
-function filterExercises(query) {
-    const exercises = document.querySelectorAll('.exercise-card'); // Seleciona todos os cards de exercício
-    exercises.forEach(exercise => {
-        const name = exercise.querySelector('h3').textContent.toLowerCase();
-        const category = exercise.querySelector('p:nth-of-type(1)').textContent.toLowerCase();
-        const force = exercise.querySelector('p:nth-of-type(2)').textContent.toLowerCase();
-        const equipment = exercise.querySelector('p:nth-of-type(3)').textContent.toLowerCase();
-        const primaryMuscles = exercise.querySelector('p:nth-of-type(4)').textContent.toLowerCase();
-        const secondaryMuscles = exercise.querySelector('p:nth-of-type(5)').textContent.toLowerCase();
-
-        if (name.includes(query) || category.includes(query) || force.includes(query) || equipment.includes(query) || primaryMuscles.includes(query) || secondaryMuscles.includes(query)) {
-            exercise.style.display = 'block'; // Mostra o exercício se a consulta corresponder
+        const query = e.target.value.trim().toLowerCase();
+        if (query) {
+            searchExercises(query);
         } else {
-            exercise.style.display = 'none'; // Esconde o exercício se não corresponder
+            clearSearchResults();
+            fetchExercises(0); // Exibe a lista padrão ao limpar a barra de pesquisa
         }
     });
 }
