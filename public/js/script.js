@@ -1,13 +1,13 @@
 let currentPage = 0;
 const exercisesPerPage = 50;
 let loading = false; // Para prevenir múltiplos carregamentos simultâneos
-const apiBaseUrl = 'https://libapi.vercel.app/api/exercises';
+const apiBaseUrl = 'https://libapi.vercel.app/api/exercises?lang=pt';
 
 // Função para buscar exercícios
 async function fetchExercises(page = 0, limit = exercisesPerPage) {
     try {
         loading = true; // Impede múltiplas chamadas simultâneas
-        const response = await fetch(`${apiBaseUrl}?page=${page}&limit=${limit}`);
+        const response = await fetch(`${apiBaseUrl}&page=${page}&limit=${limit}`);
             if (!response.ok) {
                 throw new Error(`Erro na resposta da API: ${response.statusText}`);
             }
