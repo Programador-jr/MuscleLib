@@ -1,7 +1,7 @@
 // Função para buscar exercícios na API
 async function searchExercises(query) {
     try {
-        const response = await fetch(`https://libapi.vercel.app/api/exercises/search?query=${query}`);
+        const response = await fetch(`https://libapi.vercel.app/api/exercises/search?lang=pt&query=${query}`);
         if (!response.ok) {
             throw new Error(`Erro na API: ${response.statusText}`);
         }
