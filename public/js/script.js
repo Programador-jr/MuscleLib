@@ -1,13 +1,13 @@
 let currentPage = 0;
 const exercisesPerPage = 50;
 let loading = false; // Para prevenir múltiplos carregamentos simultâneos
-const apiBaseUrl = 'https://libapi.vercel.app/api/exercises?lang=pt';
+const apiBaseUrl = 'https://libapi.vercel.app';
 
 // Função para buscar exercícios
 async function fetchExercises(page = 0, limit = exercisesPerPage) {
     try {
         loading = true; // Impede múltiplas chamadas simultâneas
-        const response = await fetch(`${apiBaseUrl}&page=${page}&limit=${limit}`);
+        const response = await fetch(`${apiBaseUrl}/api/exercises?lang=pt&page=${page}&limit=${limit}`);
             if (!response.ok) {
                 throw new Error(`Erro na resposta da API: ${response.statusText}`);
             }
@@ -47,7 +47,7 @@ function displayExercises(exercises) {
         // Verifica se há imagens e usa ambas
         if (exercise.images && exercise.images.length > 0) {
             const img = document.createElement('img');
-            img.src = `/exercises/${exercise.images[0]}`; // Usa a primeira imagem inicialmente
+            img.src = `${apiBaseUrl}/exercises/${exercise.images[0]}`; // Usa a primeira imagem inicialmente
             img.alt = exercise.name;
             exerciseCard.appendChild(img);
 
@@ -55,7 +55,7 @@ function displayExercises(exercises) {
             let currentIndex = 0;
             setInterval(() => {
                 currentIndex = (currentIndex + 1) % exercise.images.length;
-                img.src = `/exercises/${exercise.images[currentIndex]}`; // Atualiza a imagem
+                img.src = `${apiBaseUrl}/exercises/${exercise.images[currentIndex]}`; // Atualiza a imagem
             }, 1500); // Muda a imagem a cada 1,5 segundo (1500 milissegundos)
         }
 
